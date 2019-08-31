@@ -3,13 +3,6 @@
 
 using namespace std;
 
-int getIndex(int* arr, int index) {
-  if ((arr[index - 1] >= arr[index]) && (arr[index - 1] >= arr[index + 1])) {
-    return index - 1;
-  }
-  return arr[index] >= arr[index + 1] ? index : index + 1;
-}
-
 int main() {
   int n;
   scanf("%d", &n);
