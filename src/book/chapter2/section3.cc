@@ -34,3 +34,17 @@ void solve1() {
   memset(dp, -1, sizeof(dp));
   printf("%d\n", rec(0, W));
 }
+
+// recの定義からdpを直接計算
+void solve2() {
+  for (int i = n; i >= 0; i--) {
+    for (int j = 0; j < W; j++) {
+      if (j < w[i]) {
+        dp[i][j] = dp[i + 1][j];
+      } else {
+        dp[i][j] = max(dp[i + 1][j], dp[i + 1][j - w[i]] + v[i]);
+      }
+    }
+  }
+  printf("%d\n", dp[0][W]);
+}
