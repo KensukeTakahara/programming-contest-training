@@ -18,16 +18,19 @@ int rec(int i, int j) {
   }
   int res;
   if (i == n) {
+    // もう品物は残っていない
     res = 0;
   } else if (j < w[i]) {
+    // この品物は入らない
     res = rec(i + 1, j);
   } else {
+    // 入れない場合と入れる場合を両方試す
     res = max(rec(i + 1, j), rec(i + 1, j - w[i]) + v[i]);
   }
   return dp[i][j] = res;
 }
 
-void solve() {
+void solve1() {
   memset(dp, -1, sizeof(dp));
   printf("%d\n", rec(0, W));
 }
