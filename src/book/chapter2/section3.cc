@@ -48,3 +48,22 @@ void solve2() {
   }
   printf("%d\n", dp[0][W]);
 }
+
+// 最長共通部分列問題
+#define MAX_N_3 1000
+#define MAX_M_3 1000
+int n3, m3;
+char s3[MAX_N_3], t3[MAX_M_3];
+int dp3[MAX_N_3 + 1][MAX_M_3 + 1];
+void solve3() {
+  for (int i = 0; i < n3; ++i) {
+    for (int j = 0; j < m3; ++j) {
+      if (s3[i] == t3[j]) {
+        dp3[i + 1][j + 1] = dp3[i][j] + 1;
+      } else {
+        dp3[i + 1][j + 1] = max(dp3[i][j + 1], dp3[i + 1][j]);
+      }
+    }
+  }
+  printf("%d\n", dp3[n3][m3]);
+}
