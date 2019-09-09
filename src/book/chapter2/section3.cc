@@ -67,3 +67,17 @@ void solve3() {
   }
   printf("%d\n", dp3[n3][m3]);
 }
+
+// 個数制限なしナップサック問題
+void solve4() {
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j <= W; ++j) {
+      if (j < w[i]) {
+        dp[i + 1][j] = dp[i][j];
+      } else {
+        dp[i + 1][j] = max(dp[i][j], dp[i + 1][j - w[i]] + v[i]);
+      }
+    }
+  }
+  printf("%d\n", dp[n][W]);
+}
