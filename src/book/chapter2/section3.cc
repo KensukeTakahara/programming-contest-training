@@ -81,3 +81,29 @@ void solve4() {
   }
   printf("%d\n", dp[n][W]);
 }
+
+// 重さのオーダーが大きいナップサック問題
+#define INF 1000000
+#define MAX_N_5 1000
+#define MAX_V_5 1000  // 仮 本当は配列v(価値)の中で最高の値
+int dp5[MAX_N_5 + 1][MAX_N_5 * MAX_V_5 + 1];
+void solve5() {
+  fill(dp5[0], dp5[0] + MAX_N_5 * MAX_V_5 + 1, INF);
+  dp5[0][0] = 0;
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j <= MAX_N_5 * MAX_V_5; ++j) {
+      if (j < v[i]) {
+        dp5[i + 1][j] = dp5[i][j];
+      } else {
+        dp[i + 1][j] = min(dp5[i][j], dp5[i][j - v[i]] + w[i]);
+      }
+    }
+  }
+  int res = 0;
+  for (int i = 0; i <= MAX_N_5 * MAX_V_5 + 1; ++i) {
+    if (dp5[n][i] <= W) {
+      res = i;
+    }
+  }
+  printf("%d\n", res);
+}
