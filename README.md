@@ -2,3 +2,4 @@
 clang-format -style=google -i ./A.cc
 g++ -std=c++11 -Wall ./A.cc
 10^9 は long long 使いなさい
+競技プログラミングで浮動小数はなるべく使うな
